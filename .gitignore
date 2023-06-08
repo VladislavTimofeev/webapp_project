@@ -1,0 +1,14 @@
+.idea
+db.sqlite3
+
+# Environments
+
+.env
+.venv
+env/
+venv/
+django_env/
+
+# Byte-compiled
+
+__pycache__/
