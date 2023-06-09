@@ -6,15 +6,36 @@ services:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      - USER=postgres
+      - PASSWORD=testing321
+      - NAME=library
+      - PORT=5432
+      - HOST=host.docker.internal
     depends_on:
       - db
+#    networks:
+#      - backend
+
+
   db:
     container_name: db
-    image: postgres:12
-    volumes:
-      - pgdata:/var/lib/postgresql/data/
+    image: postgres
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_DB=library
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testing321
+    ports:
+      - "5432:5432"
+#    networks:
+#      - backend
 
-volumes:
-  pgdata: { }
+
+# Networks to be created to facilitate communication between containers
+#networks:
+#  backend:
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+
+#volumes:
+#  pgdata: { }

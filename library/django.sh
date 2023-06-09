@@ -8,4 +8,4 @@ python manage.py migrate
 echo ====================================
 
 echo "Starting Server..."
-python manage.py runserver host.docker.internal:8000
+python manage.py runserver localhost:8000
