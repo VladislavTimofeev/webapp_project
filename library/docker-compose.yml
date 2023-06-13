@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  library:
+    container_name: library
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - USER=env('DATABASE_USER')
+      - PASSWORD=env('DATABASE_PASS')
+      - NAME=env('DATABASE_NAME')
+      - PORT=env('DATABASE_PORT')
+      - HOST=env('DATABASE_HOST')
+    depends_on:
+      - db
+#    networks:
+#      - backend
+
+
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      - POSTGRES_DB=library
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testing321
+    ports:
+      - "5432:5432"
+#    networks:
+#      - backend
+
+
+# Networks to be created to facilitate communication between containers
+#networks:
+#  backend:
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+
+#volumes:
+#  pgdata: { }
