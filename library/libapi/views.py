@@ -153,8 +153,10 @@ class BookListApiView(APIView):
     # 2. Add books
     def post(self, request, *args, **kwargs):
         data = {
-            'title': request.data.get('title')
+            'title': request.data.get('title'),
+            'author': request.data.get('author')
         }
+        print(request.data.get('author'))
         serializer = BookSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
